@@ -1,0 +1,340 @@
+body {
+    margin:0px;
+    padding:0px;
+    background:#fff;
+    font-family: 'Roboto', sans-serif;
+    font-size: 25px;
+    color:#FF0000;
+    line-height: normal;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* ------------------------------------------------- */
+
+.container {
+    background: #FF0000;
+    width:100%;
+    height:100%;
+    transition:all 0.3s;
+}
+
+/* ------------------------------------------------- */
+
+
+@keyframes user_btn_anim {
+    0% {
+        top:38px;
+        right:calc(38px + 10);
+        width:0px;
+        height:0px;
+        background-size:0px 0px;
+    }
+    100% {
+        top:10px;
+        right:20px;
+        width:56px;
+        height:56px;
+        background-size:56px 56px;
+    }
+}
+
+/* ------------------------------------------------- */
+
+.menu {
+    background: #FF0000;
+    height: 76px;
+    width: calc(100% - 20px - 66px);
+    top: 0;
+    left:76px;
+    color:#fff;
+    position: fixed;
+    z-index: 11;
+    border-radius: 38px;
+}
+
+@keyframes menu_anim {
+    0% {height:100%;}
+    100% {height:76px;}
+}
+.menu .mdl-button {
+    margin:10px;
+}
+
+/* ------------------------------------------------- */
+
+.choice_bar {
+    position: absolute;
+    top:calc(50% - (76px / 2));
+    text-align: center;
+    width:100%;
+}
+.choice_bar .mdl-button {
+    margin:30px;
+    color: #fff !important;
+    box-shadow: none;
+}
+
+/* ------------------------------------------------- */
+
+.play {
+    position: fixed !important;
+    top:10px;
+    left:10px;
+    color: #fff !important;
+    background: #FF0000 !important;
+}
+
+/* ------------------------------------------------- */
+
+.autocomplete, .search {
+    font-size: 20px;
+}
+
+.autocomplete {
+    background:#fff;
+    color:#282828;
+    position: absolute;
+    z-index:100;
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.5);
+}
+.autocomplete .choice {
+    padding:10px;
+}
+
+/* ------------------------------------------------- */
+
+.video_liste {
+    background:#fff;
+    color:#282828;
+    position: absolute;
+    font-size:20px;
+    top:76px;
+    left:0px;
+    z-index:10;
+    width:100%;
+}
+
+.video_liste .choice {
+    padding:10px;
+    position: relative;
+    width: calc(100% - 20px);
+}
+
+.video_liste .choice .image {
+    background-color:#282828;
+    width:130px;
+    height:calc(130px * 0.57);
+    background-size: cover;
+    background-position: center center;
+}
+
+.video_liste .choice .title {
+    padding:10px;
+    position: absolute;
+    left: 140px;
+    width: calc(100% - 130px - 20px);
+    top:0px;
+}
+
+/* ------------------------------------------------- */
+
+.musics_panel {
+    position: absolute;
+    top:76px;
+    left:0px;
+    z-index:9;
+    width:100%;
+}
+
+/* ------------------------------------------------- */
+
+.search {
+    position: absolute;
+    left:76px;
+    top:26px;
+    width:calc(100% - 76px - 76px);
+    background: transparent;
+    color:#fff;
+    border:none;
+    border-bottom: 1px solid #fff;
+    outline: transparent;
+}
+
+.mic {
+    background: transparent;
+    border:1.5px solid #fff;
+    color:#fff;
+    transition: all 0.3s;
+}
+
+.mic.listening {
+    background: #fff !important;
+    border:1.5px solid #fff;
+    color:#FF0000 !important;
+}
+
+.bb {
+    position: fixed;
+    color: #FF0000;
+    background:#fff;
+}
+.exit {
+    bottom:0px;
+    left: 0px;
+}
+.create_link {
+    bottom:0px;
+    left: 66px;
+}
+
+/* ------------------------------------------------- */
+
+.music {
+    position: relative;
+    width:calc(100% - 40px);
+    height:calc(30px + 20px);
+    background:#eee;
+    border-radius: 1000px;
+    overflow: hidden;
+    margin:20px;
+    transition: all 0.3s;
+}
+
+.music .progress {
+    opacity: 0;
+    position: absolute;
+    top:30px;
+    left:-5px;
+    height:10px;
+    background:#fff;
+}
+
+.music.appear {
+    animation: music_anim 1s;
+}
+
+@keyframes music_anim {
+    0%{height:calc(30px + 20px);width:calc(30px + 20px);transform: scale(0);}
+    30%{height:calc(30px + 20px);width:calc(30px + 20px);transform: scale(1);}
+    100%{height:calc(30px + 20px);width:calc(100% - 40px);}
+}
+
+.music .title {
+    color:#282828;
+    position:absolute;
+    font-size: 20px;
+    top:7px;
+    left:20px;
+    width:calc(300px);
+}
+
+.music .description {
+    color:#909090;
+    position:absolute;
+    font-size: 15px;
+    top:27px;
+    left:20px;
+    width:calc(300px);
+}
+
+.music.appear .description, .music.appear .title {
+    animation: title_anim 1s;
+}
+
+@keyframes title_anim {
+    0%{opacity:0}
+    50%{opacity:0}
+    100%{opacity:1}
+}
+
+.music .user {
+    position: absolute;
+    width:30px;
+    height:30px;
+    top: 10px;
+    right:10px;
+    background-size: 30px 30px;
+    border-radius: 1000px;
+}
+.music .delete {
+    position: absolute;
+    color:#aaa;
+    right:9px;
+    top:9px;
+    transition: all 0.3s;
+}
+.music .reload {
+    position: absolute;
+    color:#555;
+    right:calc(9px + 9px + 32px);
+    top:9px;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3s;
+}
+
+.music.disabled {
+    opacity: 0.5;
+}
+
+.music.disabled .reload {
+    opacity: 1;
+    pointer-events: all;
+}
+
+/* ------------------------------------------------- */
+
+.music.playing .reload, .music.playing .delete {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.music.playing {
+    background:#ff0000;
+}
+
+.music.playing .title{
+    color:rgb(255, 211, 211);
+}
+
+.music.playing .description{
+    opacity: 0;
+    color:rgb(248, 143, 143);
+}
+
+.music.playing .progress {
+    width:calc(5px + 50%);
+    opacity: 1;
+    transition:all 0.3s;
+    border-radius:1000px;
+}
+
+/* ------------------------------------------------- */
+
+#player {
+    opacity:0;
+    pointer-events: none;
+    position: fixed;
+    top:0px;
+    left:0px;
+}
+
+/* ------------------------------------------------- */
+
+.music_disappear_container {
+    animation: container_disappear 0.5s forwards;
+    width:100%;
+    position: relative; 
+}
+.music_disappear_container .music {
+    position: absolute;
+    opacity:1;
+    animation: disappear 0.5s forwards;
+}
+@keyframes disappear {
+    0%{opacity:1;width:calc(100% - 40px);left:20px;}
+    100%{opacity:0;width:calc(100% - 100px);left:50px;}
+}
+@keyframes container_disappear {
+    100%{height:0px;}
+}

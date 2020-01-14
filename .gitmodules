@@ -1,0 +1,6 @@
+[submodule "GoogleSignInJS"]
+	path = GoogleSignInJS
+	url = https://github.com/hugodecasta/GoogleSignInJS
+[submodule "Mirror"]
+	path = Mirror
+	url = https://github.com/hugodecasta/Mirror

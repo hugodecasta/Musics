@@ -1,0 +1,17 @@
+{
+    "short_name": "Musics",
+    "name": "Musics",
+    "display": "standalone",
+    "Scope": "/",
+    "orientation": "portrait",
+    "theme_color": "#ff0000",
+    "background_color": "#ffffff",
+    "icons": [
+      {
+        "src": "icon.png",
+        "type": "image/png",
+        "sizes": "512x512"
+      }
+    ],
+    "start_url": "index.html"
+  }
