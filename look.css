@@ -284,9 +284,13 @@ body {
 
 /* ------------------------------------------------- */
 
-.music.playing .reload, .music.playing .delete {
+.music.playing .reload {
     opacity: 0;
     pointer-events: none;
+}
+
+.music.playing .delete {
+    color:#fff;
 }
 
 .music.playing {

@@ -53,9 +53,6 @@ function text_button(text,type='raised',more_class='') {
                     ok(transcript)
                 }
             }
-            reco.onend(function() {
-
-            })
             reco.start();
         })
     }
@@ -190,7 +187,8 @@ function text_button(text,type='raised',more_class='') {
             let reload_button = round_button('replay','icon','reload')
             jq.append(remove_button).append(reload_button)
             remove_button.click(function() {
-                if(!list_connector.get(['musics',id],'enabled')) {
+                if(!list_connector.get(['musics',id],'enabled') || 
+                    list_connector.get(['musics',id],'playing')) {
                     list_connector.del(['musics'],id)
                     return
                 }
@@ -284,6 +282,9 @@ function text_button(text,type='raised',more_class='') {
             var player = null
 
             function pause_list() {
+                if(player == null) {
+                    return
+                }
                 $('.play i').html('play_arrow')
                 list_connector.set_direct('playing',false)
                 player.pauseVideo()
@@ -305,10 +306,13 @@ function text_button(text,type='raised',more_class='') {
                 let first_id = ids[0]
                 let first_song = musics[first_id]
 
-                function end_playing() {
+                function end_playing(del=true) {
                     clearInterval(play_int)
-                    list_connector.set_direct('playing',false)
-                    list_connector.del(['musics'],first_id)
+                    pause_list()
+                    if(del) {
+                        list_connector.set_direct('playing',false)
+                        list_connector.del(['musics'],first_id)
+                    }
                     setTimeout(function() {
                         play_list()
                     },1000)
@@ -319,8 +323,13 @@ function text_button(text,type='raised',more_class='') {
                     return
                 }
 
-                $('.play i').html('pause')
-                list_connector.set_direct('playing',true)
+                list_connector.on_prop('del',['musics'],first_id,function() {
+                    clearInterval(play_int)
+                    $('.play i').html('play_arrow')
+                    player.pauseVideo()
+                })
+
+                $('.play i').html('more_horiz')
 
                 $('#player').replaceWith($('<div>').attr('id','player'))
                 player = new YT.Player('player', {
@@ -329,6 +338,8 @@ function text_button(text,type='raised',more_class='') {
                     videoId: first_song.video_id,
                     events: {
                         'onReady': function() {
+                            $('.play i').html('pause')
+                            list_connector.set_direct('playing',true)
                             player.playVideo()
                             let current_time = list_connector.get(['musics',first_id],'time',0)
                             player.seekTo(current_time)
@@ -341,6 +352,7 @@ function text_button(text,type='raised',more_class='') {
                         },
                         'onStateChange': function(event) {
                             if (event.data == YT.PlayerState.ENDED) {
+                                console.log('end')
                                 end_playing()
                             }
                         }
